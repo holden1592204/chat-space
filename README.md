@@ -6,29 +6,29 @@
 |------|----|-------|
 |user_id|integer|null: false, foreign_key: true|
 |group_id|integer|null: false, foreign_key: true|
+### Association
+- has_many :users
+- has_many :group
 
-##  tweets テーブル
+## group_tweets テーブル
 |Column|Type|Options|
 |------|----|-------|
-|user_id|integer|auto_increment|
-|text|text|null: false, foreign_key: true|
-|image|string|null: false, foreign_key: true|
-|created_at|date|null: false, foreign_key: true|
-|updated_at|date|null: false, foreign_key: true|
+|text|text||
+|image|text||
 |user_id|integer|null: false, foreign_key: true|
+### Association
+- belongs_to :user
+- belongs_to :tweets
 
-## edit account テーブル
+## edit_account テーブル
 |Column|Type|Options|
 |------|----|-------|
 |name|string||null: false, foreign_key: true|
 |email|string|null: false, foreign_key: true|
 
-## log in テーブル
+## log_in テーブル
 |Column|Type|Options|
 |------|----|-------|
 |email|varchar|null: false, foreign_key: true|
 |password|char|null: false, foreign_key: true|
 
-### Association
-- belongs_to :group
-- belongs_to :user
