@@ -8,20 +8,21 @@
 ### Association
 - belongs_to :user
 - belongs_to :group
+- has_many :groups
 
 ## users テーブル
 |Column|Type|Options|
 |------|----|-------|
-|email|string|null: false|
-|name|string|null: false|
+|email|string|null: false, foreign_key: true|
+|name|string|null: false, foreign_key: true|
 ### Association
-- belongs_to :group, through:  :groups_users
+- has_many :groups, through:  :groups_users
 - has_many :tweets
 
 ## groupsテーブル
 |Column|Type|Options|
 |------|----|-------|
-|group_name|string|null: false|
+|name|string|null: false|
 ### Association
 - has_many :tweets
 - has_many :groups_users
