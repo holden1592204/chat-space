@@ -33,7 +33,7 @@
 |------|----|-------|
 |text|text|null: false|
 |user_id|integer|null: false, foreign_key: true|
-|image|string|null: false, foreign_key: true|
+|image|string||
 |group_id|integer|null: false, foreign_key: true|
 ### Association
 - belongs_to :group
