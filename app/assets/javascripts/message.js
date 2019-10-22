@@ -48,7 +48,7 @@
     })
   });
 
-  //  自動更新機能
+  //  自動更新機能実装
 
   // $(function(){
   //   setInterval(autoUpdate, 3000);
