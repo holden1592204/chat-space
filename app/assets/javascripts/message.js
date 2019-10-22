@@ -47,6 +47,9 @@
       $(".form__submit").attr("disabled",false);
     })
   });
+
+  //  自動更新機能
+
   // $(function(){
   //   setInterval(autoUpdate, 3000);
   //   });
