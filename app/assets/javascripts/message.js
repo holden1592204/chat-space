@@ -1,5 +1,5 @@
-  $(function(){
-
+  //非同期通信実装
+    $(document).on('turbolinks:load', function(){
     function buildHTML(message){
       var image_url = (message.image_url)? `<image class="lower-message_image" src="${message.image_url} "class="lower-message__image">`:"";
       var html = `<div class="message" id = '${message.id}'>
@@ -48,6 +48,11 @@
     })
   });
 
+  //インクリメンタルサーチ実装
+
+  
+
+    
   //  自動更新機能実装
 
   // $(function(){

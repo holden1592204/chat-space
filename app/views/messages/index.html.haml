@@ -12,7 +12,8 @@
           %li.member
       .right-header
         .right-header__button
-          Edit
+          = link_to edit_group_path(@group) do
+            .main-header__edit-btn Edit
     .messages
       = render @messages
       -# = render partial: 'messages', collection: @messages, as: :message
