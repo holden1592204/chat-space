@@ -1,0 +1,58 @@
+@import "config/colors";
+
+.side-bar {
+  box-sizing: border-box;
+  color: $white;
+  width: 300px;
+  float: left;
+  .head {
+    background-color: $side_blue_dark;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    line-height: 100px;
+    padding: 0 20px;
+    .head-box {
+      height: 100px;
+      font-size: $side_header_font;
+      font-weight: bold;
+    }
+
+    &__lists {
+      .list {
+        display: inline-block;
+        .icon{
+          color: white;
+          font-size: 16px;
+        }
+      }
+    }
+  }
+      
+  .groups {
+    background-color: $side_blue_light;
+    height: calc(100vh - 100px);
+    padding: 0 20px;
+    overflow: scroll;
+    text-decoration: none;
+    .group {
+      box-sizing: border-box;
+      padding: 20px 0 40px;
+      &__name {
+        font-size: $side_group_name;
+        color: white;
+        text-decoration: none;
+      }
+      &__messages {
+        font-size: $side_group_posts;
+        text-decoration: none;
+        color: white;
+        margin-top: 5px;
+      }
+    }
+  }
+}
+
+a {
+  text-decoration: none;
+}
