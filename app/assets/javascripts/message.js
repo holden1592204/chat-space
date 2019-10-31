@@ -1,5 +1,5 @@
-  $(function(){
 
+    $(document).on('turbolinks:load', function(){
     function buildHTML(message){
       var image_url = (message.image_url)? `<image class="lower-message_image" src="${message.image_url} "class="lower-message__image">`:"";
       var html = `<div class="message" id = '${message.id}'>
@@ -36,8 +36,8 @@
     .done(function(message){
       var html =buildHTML(message);
       $('.messages').append(html);  //messageHTMLを変数でappend（追記）に渡す
-      $('.form__message').val("");
-      $('.hidden').val("");
+      $('.form__message')[0].reset();
+      $('.hidden')[0].reset();
       $('#new_message')[0].reset(); //text送信後入力した値を消す
       $('.form__submit').prop('disabled', false);
       $('.messages').animate({scrollTop: $(".messages")[0].scrollHeight }, 'fast');
@@ -47,6 +47,8 @@
       $(".form__submit").attr("disabled",false);
     })
   });
+
+});
 
    //自動更新機能
 
