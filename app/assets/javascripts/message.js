@@ -1,14 +1,14 @@
 
-    $(document).on('turbolinks:load', function(){
+   $(function(){
     function buildHTML(message){
       var image_url = (message.image_url)? `<image class="lower-message_image" src="${message.image_url} "class="lower-message__image">`:"";
-      var html = `<div class="message" id = '${message.id}'>
+      var html = `<div class="message" data-message-id = '${message.id}'>
                     <div class="upper-message">
                       <div class="upper-message__user-name">
-                        ${message.name}
+                        ${message.user_name}
                       </div>
                       <div class="upper-message__date">
-                        ${message.time}
+                        ${message.created_at}
                       </div>
                     </div>
                       <div class="lower-message">
@@ -17,9 +17,9 @@
                           ${image_url}
                         </p>
                       </div>
-                  </div>`
+                   </div>`
                   return html;
-  }
+    }
 
   $('#new_message').on('submit', function(e) {
     e.preventDefault();
@@ -29,16 +29,17 @@
       url: url,
       type: "POST",
       data: formData,
-      datatype: 'json',
+      dataType: 'json',
       processData: false,
       contentType: false
     })
     .done(function(message){
-      var html =buildHTML(message);
+      console.log(message)
+      var html = buildHTML(message);
       $('.messages').append(html);  //messageHTMLを変数でappend（追記）に渡す
-      $('.form__message')[0].reset();
-      $('.hidden')[0].reset();
-      $('#new_message')[0].reset(); //text送信後入力した値を消す
+      $('.form__message')[0];
+      $('.hidden')[0];
+      $('#new_message')[0]; //text送信後入力した値を消す
       $('.form__submit').prop('disabled', false);
       $('.messages').animate({scrollTop: $(".messages")[0].scrollHeight }, 'fast');
     })
@@ -47,39 +48,34 @@
       $(".form__submit").attr("disabled",false);
     })
   });
-
-});
-
    //自動更新機能
-
-  $(function(){
-    setInterval(autoUpdate, 5000);
-    });
-
-    function autoUpdate() {
+   
+    $(function autoUpdate() {
       var url = window.location.href;
       if (url.match(/\/groups\/\d+\/messages/)) {
-        var message_id = $('.message').last().data('message-id');
-          $.ajax({
-          url: 'api/messages',
-          type: 'GET',
-          data: { id: message_id },
-          dataType: 'json'
-        })
+    var last_message_id = $('.message').last().data('message-id');
+      $.ajax({
+      url: 'api/messages',
+      type: 'GET',
+      data: { id: last_message_id },
+      dataType: 'json'
+      })
     .done(function(messages){
-      if (messages.length !== 0) {
+      
+      if (messages.length > 0) {
+        var updatingHTML = '';
         messages.forEach(function(message) {
-          var html =buildHTML(message);
-          $('.messages').append(html);
-          $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight }, 'fast');
+          updatingHTML = buildHTML(message);
+          //console.log(updatingHTML)
         });
+          $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight }, 'fast');
+          $('.messages').append(updatingHTML);       
       }
     })
     .fail(function() {
       alert('メッセージを入力してください');
     })
-   } else {
-      clearInterval(autoUpdate);
-    }
-  };
+    setInterval(autoUpdate, 5000);
+    } 
+  });
 });
