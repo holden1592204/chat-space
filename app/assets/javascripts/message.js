@@ -1,5 +1,5 @@
 
-   $(function(){
+  $(function(){
     function buildHTML(message){
       var image_url = (message.image_url)? `<image class="lower-message_image" src="${message.image_url} "class="lower-message__image">`:"";
       var html = `<div class="message" data-message-id = '${message.id}'>
@@ -39,7 +39,7 @@
       $('.messages').append(html);  //messageHTMLを変数でappend（追記）に渡す
       $('.form__message')[0];
       $('.hidden')[0];
-      $('#new_message')[0]; //text送信後入力した値を消す
+      $('#new_message').empty(); //text送信後入力した値を消す
       $('.form__submit').prop('disabled', false);
       $('.messages').animate({scrollTop: $(".messages")[0].scrollHeight }, 'fast');
     })
@@ -61,7 +61,6 @@
       dataType: 'json'
       })
     .done(function(messages){
-      
       if (messages.length > 0) {
         var updatingHTML = '';
         messages.forEach(function(message) {
@@ -70,12 +69,13 @@
         });
           $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight }, 'fast');
           $('.messages').append(updatingHTML);       
+      } else {
+        clearInterval(updatingHTML)
       }
     })
     .fail(function() {
       alert('メッセージを入力してください');
     })
-    setInterval(autoUpdate, 5000);
     } 
   });
 });
