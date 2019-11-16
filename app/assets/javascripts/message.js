@@ -34,12 +34,11 @@
       contentType: false
     })
     .done(function(message){
-      console.log(message)
       var html = buildHTML(message);
       $('.messages').append(html);  //messageHTMLを変数でappend（追記）に渡す
-      $('.form__message')[0];
+      //$('.form__message')[0];
       $('.hidden')[0];
-      $('#new_message').empty(); //text送信後入力した値を消す
+      $('#new_message')[0].reset(); //text送信後入力した値を消す
       $('.form__submit').prop('disabled', false);
       $('.messages').animate({scrollTop: $(".messages")[0].scrollHeight }, 'fast');
     })
