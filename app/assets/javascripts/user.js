@@ -19,22 +19,13 @@ $(function() {
 
   function addDeleteUser(name, id) {
     var html2 =
-               `<divclass="chat-group-user clearfix" id="${id}">
-                  <input name='group[user_ids][]' type='hidden' value='${id}'>
-                  <p class="chat-group-user__name">${name}</p>
-                  <div class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn'>削除</div>
+               `
+               <div class="chat-group-user">
+                <input name="group[user_ids][]" type="hidden" value='${id}'>
+                <p class="chat-group-user__name">${name}</p>
+                <div class='user-search-remove chat-group-user__btn chat-group-user__btn--remove js-remove-btn'>削除</div>
                </div>`
                $(".js-add-user").append(html2);
-  }
-
-  function appendUserToGroup(userId){
-    var html =
-               `<div class="chat-group-form__field clearfix" js-chat-member>
-                  <input value="${userId}" name="group[user_ids][]" type="hidden" id="group_user_ids_${userId}" />
-                  <div class="chat-group-user clearfix></div> 
-                </div>`
-              
-    $(`#${userId}`).append(html);
   }
 
 $('#user-search-field').on('keyup', function(e){
@@ -63,13 +54,10 @@ $('#user-search-field').on('keyup', function(e){
   })
   });
   $("#user-search-result").on("click", ".chat-group-user__btn--add", function(){
-    console.log("aa")
     $(".user-search-add").parent().remove();
     const userName = $(this).attr("data-user-name");
     const userId = $(this).attr("data-user-id");
       addDeleteUser(userName, userId);
-      appendUserToGroup(userId);
-      // console.log(lpgus)
   })
   $(document).on("click", ".chat-group-user__btn--remove", function(){
       $(this).parent().remove();

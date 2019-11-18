@@ -1,7 +1,7 @@
 
   $(function(){
     function buildHTML(message){
-      var image_url = (message.image_url)? `<image class="lower-message_image" src="${message.image_url} "class="lower-message__image">`:"";
+      var image_url = (message.image.url)? `<image class="lower-message_image" src="${message.image.url} "class="lower-message__image">`:"";
       var html = `<div class="message" data-message-id = '${message.id}'>
                     <div class="upper-message">
                       <div class="upper-message__user-name">
@@ -35,7 +35,7 @@
     })
     .done(function(message){
       var html = buildHTML(message);
-      $('.messages').append(html);  //messageHTMLを変数でappend（追記）に渡す
+      $('.messages').append(html);  //変数でappend（追記）に渡す
       //$('.form__message')[0];
       $('.hidden')[0];
       $('#new_message')[0].reset(); //text送信後入力した値を消す
@@ -68,9 +68,9 @@
         });
           $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight }, 'fast');
           $('.messages').append(updatingHTML);       
-      } else {
-        clearInterval(updatingHTML)
-      }
+      } 
+      setInterval(updatingHTML, 5000);
+      //clearInterval(updatingHTML);
     })
     .fail(function() {
       alert('メッセージを入力してください');
